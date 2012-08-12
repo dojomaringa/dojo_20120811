@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <link rel="stylesheet" href="qunit.css" />
+
+    <script type="text/javascript" src="qunit.js"></script>
+    <script type="text/javascript" src="anagrama.js"></script>
+
+    <script type="text/javascript">
+      test("Verificar a função obtemRestante", function() {
+        deepEqual(obtemRestante("abc", 1), "ac", "restante de abc,1 é ac");
+      });
+
+      test("Verificar se o retorno é apenas uma letra", function() {
+        deepEqual(anagrama("a"), ["a"], "anagrama de a é [a]");
+      });
+
+      test("Verificar o anagrama com duas letras", function() {
+        deepEqual(anagrama("aa"), ["aa"], "anagrama de aa é [aa]");
+        deepEqual(anagrama("ab"), ["ab","ba"], "anagrama de ab é [ab, ba]");
+        deepEqual(anagrama("ac"), ["ac","ca"], "anagrama de ac é [ac, ca]");
+      });
+
+      test("Verificar o anagrama com três letras", function() {
+        deepEqual(anagrama("aaa"), ["aaa"], "anagrama de aaa é [aaa]");
+
+        var anagramas = ["abc", "acb", "bca", "bac", "cab", "cba"].sort();
+        deepEqual(anagrama("abc"), anagramas, "\o/");
+      });
+
+      test("Anagrama de 'biro'", function() {
+        var biro_anagrama = [
+          'biro', 'bior', 'brio', 'broi', 'boir', 'bori',
+          'ibro', 'ibor', 'irbo', 'irob', 'iobr', 'iorb',
+          'rbio', 'rboi', 'ribo', 'riob', 'roib', 'robi',
+          'obir', 'obri', 'oibr', 'oirb', 'orbi', 'orib'
+        ].sort();
+
+        deepEqual(anagrama("biro"), biro_anagrama, "anagrama de biro");
+      });
+    </script>
+  </head>
+
+  <body>
+    <section id="qunit"></section>
+  </body>
+</html>
